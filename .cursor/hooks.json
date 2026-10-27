@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "py -3 .cursor/hooks/inject_journal_context.py"
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "py -3 .cursor/hooks/inject_journal_context.py"
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "py -3 .cursor/hooks/inject_journal_context.py"
+      },
+      {
+        "command": "py -3 .cursor/hooks/inject_rules_on_action.py"
+      }
+    ],
+    "stop": [
+      {
+        "command": "bash .cursor/hooks/on-stop.sh",
+        "loop_limit": 1
+      }
+    ],
+    "subagentStop": [
+      {
+        "command": "bash .cursor/hooks/on-subagent-stop.sh",
+        "loop_limit": 1
+      }
+    ]
+  }
+}
