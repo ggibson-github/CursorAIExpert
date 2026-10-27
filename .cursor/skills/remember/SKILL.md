@@ -1,6 +1,6 @@
 ---
 name: remember
-description: Use when the user says "remember this", "note this down", "save this", "capture this", or provides a fact/rule to store â€“ or when the agent proactively detects a new reusable pattern, constraint, or procedure worth capturing. Classifies content as fact vs rule and Work Item vs Expert Role scope, then stores it in the workflow-split memory files.
+description: Use when the user says "remember this", "note this down", "save this", "capture this", or provides a fact/rule to store – or when the agent proactively detects a new reusable pattern, constraint, or procedure worth capturing. Classifies content as fact vs rule and Work Item vs Expert Role scope, then stores it in the workflow-split memory files.
 disable-model-invocation: false
 ---
 
@@ -15,7 +15,7 @@ Captures facts and rules with structured classification when the user says "reme
 - Agent proactively detects new patterns during work (see Proactive Detection section)
 
 > **Memory model (read first):** Expert Role memory is **workflow-split** (since 2027-01-01). There is no
-> single `facts/facts.md` or `facts/rules.md` â€“ those were archived (`facts-ARCHIVE-2027-01-01.md`,
+> single `facts/facts.md` or `facts/rules.md` – those were archived (`facts-ARCHIVE-2027-01-01.md`,
 > `rules-ARCHIVE-2027-01-01.md`). Store each Expert Role capture in the file matching its `Workflows:`
 > value: facts -> `facts/facts-developer.md` | `facts/facts-incident-response.md` | `facts/facts-operations.md`;
 > rules -> `facts/rules-developer.md` |
@@ -23,7 +23,7 @@ Captures facts and rules with structured classification when the user says "reme
 > `Workflows: all` -> store in the developer file (or the one it's most used in) with `**Workflows:** all` so
 > every loader includes it. Add a pointer to `facts/MEMORY-INDEX.md` when the capture
 > introduces a new topic.
-> **Work Item context-level** captures are NOT split â€“ use `work-items/<id>/facts/facts.md`
+> **Work Item context-level** captures are NOT split – use `work-items/<id>/facts/facts.md`
 > and `.../rules.md` as written.
 > When cross-referencing for duplicates, read the split Expert Role files, not the archived monoliths.
 
@@ -42,7 +42,7 @@ When user says "remember this" (or similar):
 
 2. **Cross-reference against existing facts/rules:**
     - Read ALL fact/rule files:
-    - Expert Role (workflow-split): `facts/facts-developer.md`, `facts/facts-incident-response.md`, `facts/facts-operations.md` (facts) and `facts/rules-developer.md`, `facts/rules-incident-response.md`, `facts/rules-operations.md` (rules) â€“ read the file(s) for the current workflow first, and any other workflow the content might already live under
+    - Expert Role (workflow-split): `facts/facts-developer.md`, `facts/facts-incident-response.md`, `facts/facts-operations.md` (facts) and `facts/rules-developer.md`, `facts/rules-incident-response.md`, `facts/rules-operations.md` (rules) – read the file(s) for the current workflow first, and any other workflow the content might already live under
     - `work-items/<work-item-id>/facts/facts.md` (Work Item facts)
     - `work-items/<work-item-id>/facts/rules.md` (Work Item rules)
     - Search for existing captures that match or overlap with the content
@@ -123,17 +123,17 @@ If scope is Expert Role-level, ask: "Which workflows does this apply to?"
 
 Ask this for **rules** (constraints/procedures); facts are browse-only and skip it.
 
-Ask: "What tool-action is the agent about to take when this rule becomes relevant?" This is the **action axis** â€“ independent of workflow â€“ that lets the preToolUse hook (`.cursor/hooks/inject-rules-on-action.sh`) surface the rule at the exact moment of the action, in *any* session, not just the workflow file it's filed under. This is the mechanism that fixes "the rule was never loaded."
+Ask: "What tool-action is the agent about to take when this rule becomes relevant?" This is the **action axis** – independent of workflow – that lets the preToolUse hook (`.cursor/hooks/inject-rules-on-action.sh`) surface the rule at the exact moment of the action, in *any* session, not just the workflow file it's filed under. This is the mechanism that fixes "the rule was never loaded."
 
 **Trigger vocabulary** (comma-separate multiple; use `none` if the rule is pure background/judgment with no discrete tool-action moment):
-    - `write:sql` â€“ about to Write/Edit any `.sql` file
-    - `write:customer-html` â€“ about to Write/Edit a customer-facing `.html`
-    - `write:customer-sql` â€“ about to emit recommended SQL into a customer deliverable
-    - `pr:open` â€“ about to run `gh pr create`
-    - `git:push` / `git:commit` â€“ about to run `git push` / `git commit`
-    - `config:change` â€“ about to change a config
-    - `sql:generate` â€“ about to generate SQL from memory (companion to evidence-based rules)
-    - `none` â€“ no discrete tool-action trigger
+    - `write:sql` – about to Write/Edit any `.sql` file
+    - `write:customer-html` – about to Write/Edit a customer-facing `.html`
+    - `write:customer-sql` – about to emit recommended SQL into a customer deliverable
+    - `pr:open` – about to run `gh pr create`
+    - `git:push` / `git:commit` – about to run `git push` / `git commit`
+    - `config:change` – about to change a config
+    - `sql:generate` – about to generate SQL from memory (companion to evidence-based rules)
+    - `none` – no discrete tool-action trigger
 
 **Principle:** `Triggers:` answers "what is the agent about to DO that means it needs this rule RIGHT NOW", NOT the rule's topic. A SQL-coding-standard rule -> `write:sql`; a PR-policy rule -> `pr:open`; a diagnostic judgment principle -> `none`.
 
@@ -201,16 +201,16 @@ Before storing, assess content size and scope:
 **File paths:**
     - Work Item facts: `work-items/<work-item-id>/facts/facts.md`
     - Work Item rules: `work-items/<work-item-id>/facts/rules.md`
-    - Expert Role facts: the workflow-split file by `Workflows:` value â€“ `facts/facts-developer.md` | `facts/facts-incident-response.md` | `facts/facts-operations.md` (`all` -> developer file, keep `**Workflows:** all`)
-    - Expert Role rules: the workflow-split file by `Workflows:` value â€“ `facts/rules-developer.md` | `facts/rules-incident-response.md` | `facts/rules-operations.md` (`all` -> developer file, keep `**Workflows:** all`)
+    - Expert Role facts: the workflow-split file by `Workflows:` value – `facts/facts-developer.md` | `facts/facts-incident-response.md` | `facts/facts-operations.md` (`all` -> developer file, keep `**Workflows:** all`)
+    - Expert Role rules: the workflow-split file by `Workflows:` value – `facts/rules-developer.md` | `facts/rules-incident-response.md` | `facts/rules-operations.md` (`all` -> developer file, keep `**Workflows:** all`)
     - After adding an Expert Role entry that introduces a new topic, add a one-line pointer to `facts/MEMORY-INDEX.md`
 
 **Format:**
 ```markdown
 ## YYYY-MM-DD: [Label/Title]
 **Scope:** work-item | expert-role
-**Workflows:** [developer | production-incident | all â€“ expert-role rules only]
-**Triggers:** [action token(s) or `none` â€“ rules only; see Question 4 vocabulary]
+**Workflows:** [developer | production-incident | all – expert-role rules only]
+**Triggers:** [action token(s) or `none` – rules only; see Question 4 vocabulary]
 **Captured:** YYYY-MM-DD
 **Source:** [Optional: user name, URL, chat thread, etc.]
 **Status:** active

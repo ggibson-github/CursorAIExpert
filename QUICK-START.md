@@ -71,21 +71,21 @@ A new Work Item starts from the template (journal, status, task list, and facts)
 
 ```
 work-items\<WID>\
-â”œâ”€â”€ journal\progress.md                    # Session state for this Work Item
-â”œâ”€â”€ STATUS.md
-â”œâ”€â”€ TODOS.md
-â”œâ”€â”€ spec.md                                # Optional; or a path you provide
-â”œâ”€â”€ facts\
-â”‚   â”œâ”€â”€ facts.md                           # Work Item facts
-â”‚   â””â”€â”€ rules.md                           # Work Item rules
-â”œâ”€â”€ docs\
-â”‚   â”œâ”€â”€ design\                            # requirements-summary.md, hld.md, dd.md
-â”‚   â”œâ”€â”€ diagrams\                          # *.mmd and index.html
-â”‚   â””â”€â”€ features\<feature-id>\             # Iterative feature spec, design, approval
-â””â”€â”€ tests\                                 # When this Work Item owns its tests
+├── journal\progress.md                    # Session state for this Work Item
+├── STATUS.md
+├── TODOS.md
+├── spec.md                                # Optional; or a path you provide
+├── facts\
+│   ├── facts.md                           # Work Item facts
+│   └── rules.md                           # Work Item rules
+├── docs\
+│   ├── design\                            # requirements-summary.md, hld.md, dd.md
+│   ├── diagrams\                          # *.mmd and index.html
+│   └── features\<feature-id>\             # Iterative feature spec, design, approval
+└── tests\                                 # When this Work Item owns its tests
 ```
 
-Active context is `.cursor\active-context.txt`, formatted `work-item:WID-â€¦`. `.cursor\active-work-item.txt` is the legacy pointer.
+Active context is `.cursor\active-context.txt`, formatted `work-item:WID-…`. `.cursor\active-work-item.txt` is the legacy pointer.
 
 ## Getting Started
 
@@ -102,15 +102,15 @@ The continue skill will:
 5. If the journal has no workflow type, run **workflow-selector**. It reads `MyRole.txt` and offers only workflows still listed in `workflow-registry.json`.
 6. Perform the single next action recorded in `work-items\<WID>\journal\progress.md`.
 
-To change Work Items later, say **"switch to work item WID-â€¦"**.
+To change Work Items later, say **"switch to work item WID-…"**.
 
 ### 2. The developer pipeline
 
 From `.cursor\workflows\developer.md`:
 
-`spec-parser â†’ hld-writer â†’ dd-writer â†’ diagram-generator â†’ task-breakdown â†’ git-workflow (setup) â†’ scaffold-project â†’ implement-feature (loop) â†’ test â†’ git-workflow (commit/PR) â†’ done`
+`spec-parser → hld-writer → dd-writer → diagram-generator → task-breakdown → git-workflow (setup) → scaffold-project → implement-feature (loop) → test → git-workflow (commit/PR) → done`
 
-**Iterative feature** (say "add a new feature" or "change an existing feature"): requirements â†’ design â†’ approval â†’ branch â†’ implement â†’ test â†’ commit/PR.
+**Iterative feature** (say "add a new feature" or "change an existing feature"): requirements → design → approval → branch → implement → test → commit/PR.
 
 HLD, DD, task breakdown, and git steps are phases in the developer workflow. They do not have their own skill folders. **diagram-generator**, **scaffold-project**, and **implement-feature** do.
 
@@ -118,9 +118,9 @@ HLD, DD, task breakdown, and git steps are phases in the developer workflow. The
 
 The pipeline pauses until you approve:
 
-- **HLD and its diagrams** â€” "I approve the HLD" or "Skip HLD approval"
-- **DD and its diagrams** â€” "I approve the DD" or "Skip DD approval"
-- **Feature design** (iterative work) â€” "I approve the feature design" or an explicit waiver
+- **HLD and its diagrams** — "I approve the HLD" or "Skip HLD approval"
+- **DD and its diagrams** — "I approve the DD" or "Skip DD approval"
+- **Feature design** (iterative work) — "I approve the feature design" or an explicit waiver
 
 "Continue" is not approval and not an answer to an open question. If the next action is a wait, continue only re-prompts.
 
@@ -131,12 +131,12 @@ The pipeline pauses until you approve:
 | "start" / "continue" / "resume" | Define the role if it is pending; otherwise read the journal and perform the next step |
 | "define my role" | Run role onboarding, including any notes you already have |
 | "I approve the role" | Save the role, workflows, and skills and allow Work Items |
-| "switch to work item WID-â€¦" | Point later steps at that Work Item |
+| "switch to work item WID-…" | Point later steps at that Work Item |
 | "I approve the HLD" | Clear the HLD gate and move to DD |
 | "I approve the DD" | Clear the DD gate and move toward scaffold and implementation |
 | "Skip HLD approval" | Waive that gate |
-| "remember this â€¦" | Store a fact or rule on the Work Item, or in Expert Role memory |
-| "integrate this â€¦" | Fold a document into facts, rules, and `MyRole.txt` |
+| "remember this …" | Store a fact or rule on the Work Item, or in Expert Role memory |
+| "integrate this …" | Fold a document into facts, rules, and `MyRole.txt` |
 | "promote facts/rules" | Review Work Item learnings for Expert Role memory |
 | "add a new feature" | Start the iterative-feature workflow |
 | "refactor" | Reduce tech debt and keep tests passing |
@@ -160,9 +160,9 @@ Before HLD or DD, the system asks whether you have a template to follow.
 
 HLD profiles:
 
-- **Standard** â€” context and architecture
-- **Part 1** â€” Extended through Dependencies
-- **Extended** â€” full document, including non-functional requirements and compliance
+- **Standard** — context and architecture
+- **Part 1** — Extended through Dependencies
+- **Extended** — full document, including non-functional requirements and compliance
 
 ### 7. What the pipeline produces
 
@@ -228,8 +228,8 @@ Agent: [records approval and sets next action to "run dd-writer"]
 
 ## Learn more
 
-- `AGENTS.md` â€” workflow rules
-- `.cursor\CONTEXT-SYSTEM.md` â€” how the active Work Item is stored
-- `.cursor\workflows\developer.md` â€” phase sequence, gates, and artifact paths
-- `facts\MEMORY-INDEX.md` â€” how expert memory is organized
-- `docs\spec-to-artifacts-agent-skills-system.md` â€” longer description of the system
+- `AGENTS.md` — workflow rules
+- `.cursor\CONTEXT-SYSTEM.md` — how the active Work Item is stored
+- `.cursor\workflows\developer.md` — phase sequence, gates, and artifact paths
+- `facts\MEMORY-INDEX.md` — how expert memory is organized
+- `docs\spec-to-artifacts-agent-skills-system.md` — longer description of the system
